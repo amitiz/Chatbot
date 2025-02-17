@@ -3,6 +3,7 @@ const closeChatbot = document.querySelector("#close-chatbot");
 const messageInput = document.querySelector(".message-input");
 const fileInput = document.querySelector("#file-input");
 const fileUploadWrapper = document.querySelector(".file-upload-wrapper");
+const fileCancelButton = fileUploadWrapper.querySelector("#file-cancel");
 
 
 // Toggler event listener 
@@ -60,3 +61,10 @@ fileInput.addEventListener("change", () => {
    reader.readAsDataURL(file);
 
 } )
+fileCancelButton.addEventListener("click", () => {
+    //remove the file-uploaded css class
+    //clear the user date
+    userData.file = {};
+    fileUploadWrapper.classList.remove("file-uploaded");
+
+})
