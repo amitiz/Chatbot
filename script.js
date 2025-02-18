@@ -18,14 +18,27 @@ closeChatbot.addEventListener("click", () => {
 
 
 //get the message input 
+const handleInputMessage = (e) => {
+     e.preventDefault();
+     userData.message = messageInput.value.trim();
+     messageInput.value = "";
 
+     messageInput.dispatchEvent (new Event("input"));
+     fileUploadWrapper.classList.remove("file-uploaded");
+
+     const messageContain = `<div class="message-text"></div>
+     ${userData.file.data ? `<img src = "data:${userDdata.file.mime_type}:base64, ${userData.file.data}"
+     class="attachment" /> ` :""}
+     
+     `
+}
 
 //handle enter key for sending message 
 messageInput.addEventListener("keydown", (e) => {
     const userMessage = e.target.value.trim();
     if(e.key === "Enter" && userMessage && window.innerWidth > 768) {
         console.log(userMessage);
-        //handleInputMessage();
+        handleInputMessage(e);
     }
 })
 
