@@ -4,8 +4,18 @@ const messageInput = document.querySelector(".message-input");
 const fileInput = document.querySelector("#file-input");
 const fileUploadWrapper = document.querySelector(".file-upload-wrapper");
 const fileCancelButton = fileUploadWrapper.querySelector("#file-cancel");
+const chatBody = document.querySelector(".chat-body");
 
 
+
+const userData = {
+    message: null,
+    file: {
+        data: null,
+        mime_type: null,
+
+    }
+}
 // Toggler event listener 
 chatbotToggler.addEventListener("click", () => {
     document.body.classList.toggle("show-chatbot")
@@ -16,6 +26,12 @@ closeChatbot.addEventListener("click", () => {
     document.body.classList.remove("show-chatbot")
 });
 
+const createMessageElement = (content, ...classes) => {
+    const div = document.createElement("div");
+    div.classList.add("message", ...classes);
+    div.innerHTML = content;
+    return div;
+}
 
 //get the message input 
 const handleInputMessage = (e) => {
@@ -27,10 +43,12 @@ const handleInputMessage = (e) => {
      fileUploadWrapper.classList.remove("file-uploaded");
 
      const messageContain = `<div class="message-text"></div>
-     ${userData.file.data ? `<img src = "data:${userDdata.file.mime_type}:base64, ${userData.file.data}"
-     class="attachment" /> ` :""}
-     
-     `
+     ${userData.file.data ? `<img src = "data:${userData.file.mime_type}:base64, ${userData.file.data}"
+        class = "attachment" />` : ""}`;
+
+    const outGoingMessageDiv = createMessageElement(messageContain, "user-message");
+    outGoingMessageDiv.querySelector(".message-text").innerHTML = userData.message;
+    chatBody.appendChild(outGoingMessageDiv);
 }
 
 //handle enter key for sending message 
@@ -41,15 +59,6 @@ messageInput.addEventListener("keydown", (e) => {
         handleInputMessage(e);
     }
 })
-
-const userData = {
-    message: null,
-    file: {
-        data: null,
-        mime_type: null,
-
-    }
-}
 
 document.querySelector("#file-upload").addEventListener("click", () => fileInput.click())
 fileInput.addEventListener("change", () => {
@@ -68,8 +77,8 @@ fileInput.addEventListener("change", () => {
     userData.file = {
         data: base64String,
         mime_type: file.type,
-    };
-   };
+    }
+   }
 
    reader.readAsDataURL(file);
 
