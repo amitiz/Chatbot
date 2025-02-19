@@ -129,6 +129,7 @@ body {
 .chat-form:focus-within {
     outline: 2px solid plum;
 }
+
 /* Message Input */
 .chat-form .message-input {
     width: 100%;
@@ -245,4 +246,59 @@ body.show-chatbot #chatbot-toggler span:last-child {
 .chat-form .file-upload-wrapper.file-uploaded img,
 .chat-form .file-upload-wrapper.file-uploaded:hover #file-cancel {
   display: block;
+}
+
+.chat-body .user-message {
+    flex-direction: column;
+    align-items: flex-end;
+}
+.chat-body .user-message .message-text{
+    background: plum;
+    color: white;
+    border-radius: 13px 13px 3px 13px;
+}
+
+.chat-body .user-message .attachment {
+    width: 50%;
+    border-radius: 13px 3px 13px 13px;
+    margin-top: -7px;
+}
+
+.chat-form .bot-message .thinking-indicator {
+    display: flex;
+    
+}
+
+.chat-body .bot-message .thinking-indicator .dot {
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    background: purple;
+    opacity: 0.7;
+    animation: dotPulse 1.8s ease-in-out infinite;
+
+}
+
+@keyframes dotPulse {
+    0%,
+    44% {
+        transform: translateY(0);
+    }
+    28% {
+        opacity: 0.4;
+        transform: translateY(-4px);
+    }
+    44% {
+        opacity: 0.2;
+    }
+}
+
+.chat-body .bot-message .thinking-indicator .dot:nth-child(1){
+    animation-delay: 0.2s;
+}
+.chat-body .bot-message .thinking-indicator .dot:nth-child(2){
+    animation-delay: 0.3s;
+}
+.chat-body .bot-message .thinking-indicator .dot:nth-child(3){
+    animation-delay: 0.4s;
 }
