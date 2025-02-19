@@ -265,8 +265,7 @@ body.show-chatbot #chatbot-toggler span:last-child {
 }
 
 .chat-form .bot-message .thinking-indicator {
-    display: flex;
-    
+   display: flex;
 }
 
 .chat-body .bot-message .thinking-indicator .dot {
@@ -277,6 +276,17 @@ body.show-chatbot #chatbot-toggler span:last-child {
     opacity: 0.7;
     animation: dotPulse 1.8s ease-in-out infinite;
 
+}
+
+
+.chat-body .bot-message .thinking-indicator .dot:nth-child(1){
+    animation-delay: 0.2s;
+}
+.chat-body .bot-message .thinking-indicator .dot:nth-child(2){
+    animation-delay: 0.3s;
+}
+.chat-body .bot-message .thinking-indicator .dot:nth-child(3){
+    animation-delay: 0.4s;
 }
 
 @keyframes dotPulse {
@@ -291,14 +301,4 @@ body.show-chatbot #chatbot-toggler span:last-child {
     44% {
         opacity: 0.2;
     }
-}
-
-.chat-body .bot-message .thinking-indicator .dot:nth-child(1){
-    animation-delay: 0.2s;
-}
-.chat-body .bot-message .thinking-indicator .dot:nth-child(2){
-    animation-delay: 0.3s;
-}
-.chat-body .bot-message .thinking-indicator .dot:nth-child(3){
-    animation-delay: 0.4s;
 }

@@ -60,10 +60,10 @@ const handleInputMessage = (e) => {
                   </svg>
 
             <div class="message-text">
-             <div class="thinking-indicator">
-                 <div class="dot"></div>
-                 <div class="dot"></div>
-                 <div class="dot"></div>
+                <div class="thinking-indicator">
+                   <span class="dot"></span>
+                   <span class="dot"></span>
+                   <span class="dot"></span>
                 </div>
             </div>`;
 
