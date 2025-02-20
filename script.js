@@ -208,9 +208,9 @@ const picker = new EmojiMart.Picker({
         if (!emojiPickerContainer) return; // Ensure it exists
     
         if (e.target.id === "emoji-picker") {
-            emojiPickerContainer.classList.toggle("show-emoji-picker");  // ✅ Fix: Use the correct element
+            emojiPickerContainer.classList.toggle("show-emoji-picker");  //  Fix: Use the correct element
         } else {
-            emojiPickerContainer.classList.remove("show-emoji-picker");  // ✅ Fix: Use the correct element
+            emojiPickerContainer.classList.remove("show-emoji-picker");  // Fix: Use the correct element
         }
     }
     
