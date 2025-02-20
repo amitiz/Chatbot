@@ -266,11 +266,7 @@ body.show-chatbot #chatbot-toggler span:last-child {
 
 .chat-body .bot-message .thinking-indicator {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: row; /* Ensures horizontal alignment */
-    gap: 6px; /* Adds spacing between dots */
-    padding: 10px 0;
+    
 }
 
 .chat-body .bot-message .thinking-indicator .dot {
@@ -278,19 +274,19 @@ body.show-chatbot #chatbot-toggler span:last-child {
     width: 7px;
     border-radius: 50%;
     background: purple;
-    opacity: 0.3;
-    animation: dotPulse 1.5s infinite ease-in-out;
+    opacity: 0.7;
+    animation: dotPulse 1.8s infinite ease-in-out;
 }
 
 
 .chat-body .bot-message .thinking-indicator .dot:nth-child(1){
-    animation-delay: 0s;
-}
-.chat-body .bot-message .thinking-indicator .dot:nth-child(2){
     animation-delay: 0.2s;
 }
-.chat-body .bot-message .thinking-indicator .dot:nth-child(3){
+.chat-body .bot-message .thinking-indicator .dot:nth-child(2){
     animation-delay: 0.3s;
+}
+.chat-body .bot-message .thinking-indicator .dot:nth-child(3){
+    animation-delay: 0.4s;
 }
 
 @keyframes dotPulse {
@@ -305,4 +301,16 @@ body.show-chatbot #chatbot-toggler span:last-child {
     44% {
         opacity: 0.2;
     }
+}
+
+em-emoji-picker {
+    position: absolute;
+    visibility: hidden;
+    max-height: 330px;
+
+}
+
+body,show-moji-picker em-emoji-picker {
+    
+
 }

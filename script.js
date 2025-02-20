@@ -5,7 +5,10 @@ const fileInput = document.querySelector("#file-input");
 const fileUploadWrapper = document.querySelector(".file-upload-wrapper");
 const fileCancelButton = fileUploadWrapper.querySelector("#file-cancel");
 const chatBody = document.querySelector(".chat-body");
+const sendMessage = document.querySelector("#send-message");
 
+const API_KEY ="PASTE YOUR API_KEY ";
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
 
 const userData = {
@@ -35,6 +38,63 @@ const createMessageElement = (content, ...classes) => {
     return div;
 }
 
+//creage bot response using gemini api
+const chatHistory = [];
+const createBotResponse = async (incomingMessageDiv) => {
+    const messageElement = incomingMessageDiv.querySelector(".message-text");
+    chatHistory.push({
+        role: "user",
+        parts: [{ text: userData.message}, ...(userData.file.data ? [{inline_data: userData.file}]: [])],
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: {"Content-type": "application/json"},
+        body: JSON.stringify({
+            contents:chatHistory,
+        })
+    }
+
+    //create an api request
+    try {
+        const response = await fetch(API_URL, requestOptions);
+        const data = await response.json();
+        if(!response.ok) throw new Error(data.error.message);
+        //console.log("data",data);
+        //return;
+    
+        const apiResponseText = data.candidates[0].content.parts[0].text;
+        messageElement.innerText =apiResponseText;
+        //console.log("Response Text",apiResponseText);
+        //return;
+    
+        //add bot response to chat history
+        chatHistory.push({
+            role: "model",
+            parts: [{ text: apiResponseText}],
+        })
+
+    } catch (error) {
+        console.log("Error",error);
+        messageElement.innerText =error.message;
+        messageElement.style.color ="#ff0000";
+
+    } finally {
+        //reset user's data
+        userData.file = {};
+        incomingMessageDiv.classList.remove("thinking");
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth"});
+    }
+
+   
+    
+
+}
+
+
+
+
+
 //get the message input 
 const handleInputMessage = (e) => {
      e.preventDefault();
@@ -53,6 +113,7 @@ const handleInputMessage = (e) => {
     const outGoingMessageDiv = createMessageElement(messageContent, "user-message");
     outGoingMessageDiv.querySelector(".message-text").innerHTML = userData.message;
     chatBody.appendChild(outGoingMessageDiv);
+    chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth"});
 
     setTimeout(() => {
         const messageContent = `<svg class="bot-avatar" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1024 1024">
@@ -61,14 +122,17 @@ const handleInputMessage = (e) => {
 
             <div class="message-text">
                 <div class="thinking-indicator">
-                   <span class="dot"></span>
-                   <span class="dot"></span>
-                   <span class="dot"></span>
+                   <div class="dot"></div>
+                   <div class="dot"></div>
+                   <div class="dot"></div>
                 </div>
             </div>`;
 
         const incomingMessageDiv = createMessageElement(messageContent, "bot-message", "thinking");
         chatBody.appendChild(incomingMessageDiv);
+        chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth"});
+        //function to call gemini api
+        createBotResponse(incomingMessageDiv);
 
         
     }, 6000)
@@ -78,7 +142,7 @@ const handleInputMessage = (e) => {
 messageInput.addEventListener("keydown", (e) => {
     const userMessage = e.target.value.trim();
     if(e.key === "Enter" && !e.shiftkey && userMessage && window.innerWidth > 768 ) {
-        console.log(userMessage);
+        //console.log(userMessage);
         handleInputMessage(e);
     }
 })
@@ -118,3 +182,38 @@ fileCancelButton.addEventListener("click", () => {
     fileUploadWrapper.classList.remove("file-uploaded");
 
 })
+
+sendMessage.addEventListener("click", (e) => handleInputMessage(e));
+
+const initialInputHeight = messageInput.scrollHeight;
+
+//adjust input field height dynamically
+messageInput.addEventListener("input",() => {
+    messageInput.style.height = `${ initialInputHeight}px`;
+    messageInput.style.height = `${messageInput.scrollHeight}px`;
+    document.querySelector(".chat-form").style.borderRadius = messageInput.scrollHeight > initialInputHeight ? "15px" : "32px";
+
+})
+
+//initialise emoji picker and handle emoji selection
+const picker = new EmojiMart.Picker({
+    theme: "light",
+    onEmojiSelect: (emoji) => {
+        const { selectionStart: start, selectionEnd: end } = messageInput;
+        messageInput.setRangeText(emoji.native, start, end, "end");
+        messageInput.focus(); // Keep focus on the input field
+    },
+    onClickOutside: (e) => {
+        const emojiPickerContainer = document.querySelector("#emoji-picker"); // Get the emoji picker element
+        if (!emojiPickerContainer) return; // Ensure it exists
+    
+        if (e.target.id === "emoji-picker") {
+            emojiPickerContainer.classList.toggle("show-emoji-picker");  // ✅ Fix: Use the correct element
+        } else {
+            emojiPickerContainer.classList.remove("show-emoji-picker");  // ✅ Fix: Use the correct element
+        }
+    }
+    
+})
+
+document.querySelector(".chat-form").appendChild(picker);
