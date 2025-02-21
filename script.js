@@ -7,7 +7,8 @@ const fileCancelButton = fileUploadWrapper.querySelector("#file-cancel");
 const chatBody = document.querySelector(".chat-body");
 const sendMessage = document.querySelector("#send-message");
 
-const API_KEY ="PASTE YOUR API_KEY ";
+//API setup
+const API_KEY =" ";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
 
@@ -198,6 +199,8 @@ messageInput.addEventListener("input",() => {
 //initialise emoji picker and handle emoji selection
 const picker = new EmojiMart.Picker ({
     theme: "light",
+    previewPosition: "none",
+    skinTonePosition: "none",
     onEmojiSelect: (emoji) => {
         const {selectionStart: start, selectionEnd: end } = messageInput;
         messageInput.setRangeText(emoji.native, start, end, "end");
@@ -206,21 +209,12 @@ const picker = new EmojiMart.Picker ({
     },
     onClickOutside: (e) => {
         if (e.target.id === "emoji-picker") {
-            document.classList.toggle("show-emoji-picker");
+            document.body.classList.toggle("show-emoji-picker");
         } else {
-            document.classList.remove("show-emoji-picker");
+            document.body.classList.remove("show-emoji-picker");
         }
     }
-    // onClickOutside: (e) => {
-    //     const emojiPickerContainer = document.querySelector("#emoji-picker"); // Get the emoji picker element
-    //     if (!emojiPickerContainer) return; // Ensure it exists
     
-    //     if (e.target.id === "emoji-picker") {
-    //         emojiPickerContainer.classList.toggle("show-emoji-picker");  // ✅ Fix: Use the correct element
-    //     } else {
-    //         emojiPickerContainer.classList.remove("show-emoji-picker");  // ✅ Fix: Use the correct element
-    //     }
-    // }
     
 })
 
