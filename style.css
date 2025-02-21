@@ -310,7 +310,6 @@ em-emoji-picker {
 
 }
 
-body,show-moji-picker em-emoji-picker {
-    
-
+body,show-emoji-picker em-emoji-picker {
+    visibility: visible;
 }
