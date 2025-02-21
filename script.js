@@ -196,24 +196,34 @@ messageInput.addEventListener("input",() => {
 })
 
 //initialise emoji picker and handle emoji selection
-const picker = new EmojiMart.Picker({
+const picker = new EmojiMart.Picker ({
     theme: "light",
     onEmojiSelect: (emoji) => {
-        const { selectionStart: start, selectionEnd: end } = messageInput;
+        const {selectionStart: start, selectionEnd: end } = messageInput;
         messageInput.setRangeText(emoji.native, start, end, "end");
-        messageInput.focus(); // Keep focus on the input field
+        message.focus();
+
     },
     onClickOutside: (e) => {
-        const emojiPickerContainer = document.querySelector("#emoji-picker"); // Get the emoji picker element
-        if (!emojiPickerContainer) return; // Ensure it exists
-    
         if (e.target.id === "emoji-picker") {
-            emojiPickerContainer.classList.toggle("show-emoji-picker");  //  Fix: Use the correct element
+            document.classList.toggle("show-emoji-picker");
         } else {
-            emojiPickerContainer.classList.remove("show-emoji-picker");  // Fix: Use the correct element
+            document.classList.remove("show-emoji-picker");
         }
     }
+    // onClickOutside: (e) => {
+    //     const emojiPickerContainer = document.querySelector("#emoji-picker"); // Get the emoji picker element
+    //     if (!emojiPickerContainer) return; // Ensure it exists
+    
+    //     if (e.target.id === "emoji-picker") {
+    //         emojiPickerContainer.classList.toggle("show-emoji-picker");  // ✅ Fix: Use the correct element
+    //     } else {
+    //         emojiPickerContainer.classList.remove("show-emoji-picker");  // ✅ Fix: Use the correct element
+    //     }
+    // }
     
 })
+
+
 
 document.querySelector(".chat-form").appendChild(picker);
