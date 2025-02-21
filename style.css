@@ -329,47 +329,6 @@ body.show-emoji-picker .chat-controls #emoji-picker {
   }
 
 
-
-/* #chatbot-toggler {
-    position: fixed;
-    bottom: 30px;
-    right: 35px;
-    border: none;
-    height: 50px;
-    width: 50px;
-    display: flex;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: plum;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-} */
-
-/* #chatbot-toggler span {
-    position: absolute;
-    color: white;
-} */
-
-/* body.show-chatbot .chatbot-popup {
-    opacity: 1;
-    pointer-events: auto;
-    transform: scale(1);
-} */
-
-/* body.show-chatbot #chatbot-toggler {
-    transform: rotate(90deg);
-} */
-
-/* #chatbot-toggler span:last-child,
-body.show-chatbot #chatbot-toggler span:first-child {
-    opacity: 0;
-}
-
-body.show-chatbot #chatbot-toggler span:last-child {
-    opacity: 1;
-} */
-
 .chat-form .file-upload-wrapper :where(img, #file-cancel),
 .chat-form .file-upload-wrapper.file-uploaded #file-upload {
     display: none;
@@ -380,48 +339,29 @@ body.show-chatbot #chatbot-toggler span:last-child {
     display: block;
 }
 
-/* .chat-body .user-message {
-    flex-direction: column;
-    align-items: flex-end;
-} */
-
-/* .chat-body .user-message .message-text {
-    background: plum;
-    color: white;
-    border-radius: 13px 13px 3px 13px;
-} */
-
-/* .chat-body .user-message .attachment {
-    width: 50%;
-    border-radius: 13px 3px 13px 13px;
-    margin-top: -7px;
-} */
-
-/* .chat-body .bot-message .thinking-indicator {
-    display: flex;
-} */
-
-
 em-emoji-picker { 
     position: absolute;
     visibility: hidden;
     left: 50%;
+    max-width: 350px;
     width: 100%;
     transform: translateX(-50%);
     top: -336px;
     max-height: 330px;
 }
 
-body,show-emoji-picker em-emoji-picker {
+body.show-emoji-picker em-emoji-picker  {
     visibility: visible;
 }
 
-/* write css for mobile screen (media query) */
-@media ( max-width: 520px ) {
+/* css for mobile screens (media query) */
+@media (max-width: 520px) {
+
     #chatbot-toggler {
         right: 20px;
         bottom: 20px;
     }
+
     .chatbot-popup {
         right: 0;
         bottom: 0;
@@ -429,19 +369,16 @@ body,show-emoji-picker em-emoji-picker {
         border-radius: 0;
         width: 100%;
     }
+
     .chatbot-popup .chat-header {
         padding: 25px 15px;
-
     }
+
     .chat-body {
         padding: 25px 15px;
-
     }
+
     .chat-footer {
         padding: 10px 15px 15px;
-
-    }
-    .chat-form .file-upload-wrapper.file-uploaded #file-cancle {
-        opacity: 0;
-    }
+    }    
 }
