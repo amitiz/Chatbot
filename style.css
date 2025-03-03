@@ -339,6 +339,10 @@ body.show-emoji-picker .chat-controls #emoji-picker {
     display: block;
 }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 em-emoji-picker { 
     position: absolute;
     visibility: hidden;
@@ -354,7 +358,13 @@ body.show-emoji-picker em-emoji-picker  {
     visibility: visible;
 }
 
+<<<<<<< Updated upstream
 /* css for mobile screens (media query) */
+=======
+
+
+/* write css for mobile screens (media query) */
+>>>>>>> Stashed changes
 @media (max-width: 520px) {
 
     #chatbot-toggler {
@@ -381,4 +391,17 @@ body.show-emoji-picker em-emoji-picker  {
     .chat-footer {
         padding: 10px 15px 15px;
     }    
+<<<<<<< Updated upstream
+=======
+}
+
+em-emoji-picker { 
+    position: absolute;
+    visibility: hidden;
+    max-height: 330px;
+}
+
+body.show-emoji-picker em-emoji-picker  {
+    visibility: visible;
+>>>>>>> Stashed changes
 }

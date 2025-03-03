@@ -6,6 +6,13 @@ const fileUploadWrapper = document.querySelector(".file-upload-wrapper");
 const fileCancelButton = fileUploadWrapper.querySelector("#file-cancel")
 const chatBody = document.querySelector(".chat-body");
 const sendMessage = document.querySelector("#send-message");
+<<<<<<< Updated upstream
+=======
+
+// API setup
+const API_KEY = '';
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+>>>>>>> Stashed changes
 
 // API setup
 const API_KEY = "Paste your api here";
