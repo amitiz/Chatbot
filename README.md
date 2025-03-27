@@ -19,5 +19,5 @@ If you encounter an error like **"API key not valid"**, please double-check your
 1. Open `index.html` in your **browser**.  
 2. Start a conversation to verify that the **Gemini API-powered chatbot** is working properly.  
 
----
+
 
