@@ -1,18 +1,23 @@
-# Chatbot project using Gemini API Setup Guide 
+### **Chatbot Project Using Gemini API – Setup Guide**  
 
-If there is any problem with API key l1ke "API key not valid", please cross check your key and pass the valid API key. 
+#### **Fixing API Key Issues**  
+If you encounter an error like **"API key not valid"**, please double-check your key and ensure you’re using a valid API key.  
 
-# Steps to get free API key
-1. Go to Google AI Studio with URL (https://aistud10.google.con/app/apikey) 
-2. Navigate to the API section and create a new APT key. It's completely free 
+### **Steps to Get a Free API Key**  
+1. Visit **[Google AI Studio](https://aistudio.google.com/app/apikey)**.  
+2. Navigate to the **API section** and create a new API key (it’s free).  
+3. Copy your API key.  
 
-# Insert your API key
+### **Project Setup Instructions**  
+1. Open your project folder in **VS Code**.  
+2. Locate the **`script.js`** file.  
+3. Find the line where the **`API_KEY`** variable is defined.  
+4. Replace the placeholder with your actual **API key**.  
+5. **Save the file** (`script.js`).  
 
-1. Open your project folder in vs code
-2. navigate to `script.js` file.
-3.
-find the `API_KEY` variable and replace with your actual API key.
+### **Testing the Chatbot**  
+1. Open `index.html` in your **browser**.  
+2. Start a conversation to verify that the **Gemini API-powered chatbot** is working properly.  
 
-# Save and test
-1. Save the `script.js` file after adding your APT key
-2. Open `index.html` in your browser and verify that it is working properly by starting a conversation with Gemini API powered chatbot.
+---
+
